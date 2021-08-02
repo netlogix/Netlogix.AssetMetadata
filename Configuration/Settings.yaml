@@ -3,7 +3,7 @@ Netlogix:
 
     metadata: []
 
-#      myMetadata:
+#      mymetadata:
 #        label: 'My Awesome Metadata'
 #        className: 'My\Metadata\Domain\Model\MyMetadata'
 #        # Partial root path to add to the Asset Edit View
