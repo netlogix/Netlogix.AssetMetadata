@@ -33,7 +33,7 @@ class MediaBrowserAspect
         assert($controller instanceof AssetController);
 
         $request = $controller->getControllerContext()->getRequest();
-        if ($request instanceof ActionRequest && $request->getFormat() !== 'html') {
+        if (!($request instanceof ActionRequest && $request->getFormat() === 'html')) {
             return;
         }
 
