@@ -14,6 +14,6 @@ interface AssetMetadataAwareInterface
      * @param array<string, AssetMetadata> $metadata
      * @return void
      */
-    function setMetadata(array $metadata): void;
+    function setMetadata(array $metadata);
 
 }

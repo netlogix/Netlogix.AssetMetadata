@@ -1,0 +1,12 @@
+-
+  requestFilter: 'parentRequest.isPackage("Neos.Neos") && isFormat("html") && isPackage("Neos.Media.Browser")'
+  options:
+    layoutRootPaths:
+      'Neos.Media.Browser': 'resource://Neos.Media.Browser/Private/Layouts/Module'
+    templateRootPaths:
+      'Netlogix.AssetMetadata': 'resource://Netlogix.AssetMetadata/Private/Templates'
+      'Neos.Media.Browser': 'resource://Neos.Media.Browser/Private/Templates'
+    partialRootPaths:
+      'Netlogix.AssetMetadata': 'resource://Netlogix.AssetMetadata/Private/Partials'
+      'Neos.Neos': 'resource://Neos.Neos/Private/Partials'
+      'Neos.Media.Browser': 'resource://Neos.Media.Browser/Private/Partials'
