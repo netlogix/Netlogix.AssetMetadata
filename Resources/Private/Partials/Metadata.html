@@ -1,0 +1,11 @@
+{namespace m=Netlogix\AssetMetadata\ViewHelpers}
+
+<f:for each="{m:metadataWithPartial()}" key="metadataName" as="metadataConfiguration">
+    <h3>{metadataConfiguration.label}</h3>
+
+    <f:alias map="{metadataPropertyPath: 'metadata.{metadataName}'}">
+        <f:form.hidden property="{metadataPropertyPath}.asset" value="{asset}" />
+        <f:form.hidden property="{metadataPropertyPath}.metadataName" value="{metadataName}" />
+        <f:render partial="AssetMetadata/{metadataConfiguration.editPartialName}" arguments="{_all}" />
+    </f:alias>
+</f:for>

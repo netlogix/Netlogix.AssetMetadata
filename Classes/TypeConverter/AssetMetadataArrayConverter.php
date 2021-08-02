@@ -1,7 +1,7 @@
 <?php
 namespace Netlogix\AssetMetadata\TypeConverter;
 
-use Neos\Flow\Annotations\InjectConfiguration;
+use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Property\PropertyMappingConfigurationInterface;
 use Neos\Flow\Property\TypeConverter\TypedArrayConverter;
 
@@ -9,10 +9,10 @@ class AssetMetadataArrayConverter extends TypedArrayConverter
 {
 
     /**
-     * @InjectConfiguration(path="nameToClassNameMap")
-     * @var array
+     * @Flow\InjectConfiguration(path="metadata")
+     * @var array<string, array<string, string>>
      */
-    protected $nameToClassNameMapping = [];
+    protected $metadataSettings = [];
 
     protected $priority = 100;
 
@@ -31,8 +31,8 @@ class AssetMetadataArrayConverter extends TypedArrayConverter
         $propertyName,
         PropertyMappingConfigurationInterface $configuration
     ) {
-        if (array_key_exists($propertyName, $this->nameToClassNameMapping)) {
-            return $this->nameToClassNameMapping[$propertyName];
+        if (array_key_exists($propertyName, $this->metadataSettings)) {
+            return $this->metadataSettings[$propertyName]['className'];
         }
 
         return parent::getTypeOfChildProperty($targetType, $propertyName, $configuration);

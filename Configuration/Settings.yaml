@@ -1,5 +1,13 @@
 Netlogix:
   AssetMetadata:
 
-    # Mapping between Metadata name and className
-    nameToClassNameMap: []
+    metadata: []
+
+#      myMetadata:
+#        label: 'My Awesome Metadata'
+#        className: 'My\Metadata\Domain\Model\MyMetadata'
+#        # Partial root path to add to the Asset Edit View
+#        editPartialRootPath: 'resource://My.Metadata/Private/Partials'
+#        # Partial File to render in Asset Edit View
+#        # Path must be Package/Resources/Private/Partials/AssetMetadata/<editPartialName>.html
+#        editPartialName: 'MyMetadata'
