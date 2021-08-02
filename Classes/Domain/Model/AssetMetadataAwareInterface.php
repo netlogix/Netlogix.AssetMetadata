@@ -5,15 +5,15 @@ interface AssetMetadataAwareInterface
 {
 
     /**
-     * @param string $metadataName
-     * @return AssetMetadata
+     * @param string|null $metadataName
+     * @return AssetMetadata|array<string, AssetMetadata>
      */
-    function getMetadata($metadataName = null);
+    function getMetadata(?string $metadataName = null);
 
     /**
-     * @param array $metadata
-     * @return mixed
+     * @param array<string, AssetMetadata> $metadata
+     * @return void
      */
-    function setMetadata($metadata);
+    function setMetadata(array $metadata): void;
 
 }
