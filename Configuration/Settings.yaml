@@ -1,0 +1,5 @@
+Netlogix:
+  AssetMetadata:
+
+    # Mapping between Metadata name and className
+    nameToClassNameMap: []
