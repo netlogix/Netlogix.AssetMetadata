@@ -1,5 +1,20 @@
+# Request for Secondary Inspector
 -
-  requestFilter: 'parentRequest.isPackage("Neos.Neos") && isFormat("html") && isPackage("Neos.Media.Browser")'
+  requestFilter: 'isPackage("Neos.Media.Browser") && isController("Asset") && isFormat("html")'
+  options:
+    layoutRootPaths:
+      'Neos.Media.Browser': 'resource://Neos.Media.Browser/Private/Layouts'
+    templateRootPaths:
+      'Netlogix.AssetMetadata': 'resource://Netlogix.AssetMetadata/Private/Templates'
+      'Neos.Media.Browser': 'resource://Neos.Media.Browser/Private/Templates'
+    partialRootPaths:
+      'Netlogix.AssetMetadata': 'resource://Netlogix.AssetMetadata/Private/Partials'
+      'Neos.Neos': 'resource://Neos.Neos/Private/Partials'
+      'Neos.Media.Browser': 'resource://Neos.Media.Browser/Private/Partials'
+
+# Request for Backend Module
+-
+  requestFilter: 'parentRequest.isPackage("Neos.Neos") && isPackage("Neos.Media.Browser") && isController("Asset") && isFormat("html")'
   options:
     layoutRootPaths:
       'Neos.Media.Browser': 'resource://Neos.Media.Browser/Private/Layouts/Module'
