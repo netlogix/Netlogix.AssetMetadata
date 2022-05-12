@@ -5,24 +5,41 @@ namespace Netlogix\AssetMetadata\ViewHelpers;
 
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
 use Neos\Flow\Annotations as Flow;
+use Neos\Media\Domain\Model\AssetInterface;
+use Netlogix\AssetMetadata\Domain\Service\AssetMetadataService;
 
 class MetadataWithPartialViewHelper extends AbstractViewHelper
 {
 
     /**
-     * @Flow\InjectConfiguration(path="metadata")
-     * @var array<string, array<string, string>>
+     * @var AssetMetadataService
+     * @Flow\Inject
      */
-    protected $metadataSettings = [];
+    protected $assetMetadataService;
+
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+
+        $this->registerArgument(
+            'asset',
+            AssetInterface::class,
+            'The asset for which to return the metadata configuration',
+            true
+        );
+    }
 
     /**
      * @return array<string, array<string, string>>
      */
     public function render(): array
     {
-        return array_filter($this->metadataSettings, static function(array $configuration) {
-            return ($configuration['editPartialName'] ?? false) !== false;
-        });
+        $asset = $this->arguments['asset'];
+        assert($asset instanceof AssetInterface);
+
+        return $this->assetMetadataService->getMetadataSettingsWithPartialForAssetSourceIdentifier(
+            $asset->getAssetSourceIdentifier()
+        );
     }
 
 }
