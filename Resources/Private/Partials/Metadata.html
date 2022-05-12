@@ -1,6 +1,6 @@
 {namespace m=Netlogix\AssetMetadata\ViewHelpers}
 
-<f:for each="{m:metadataWithPartial()}" key="metadataName" as="metadataConfiguration">
+<f:for each="{m:metadataWithPartial(asset: asset)}" key="metadataName" as="metadataConfiguration">
     <h3>{metadataConfiguration.label}</h3>
 
     <f:alias map="{metadataPropertyPath: 'metadata.{metadataName}'}">

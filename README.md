@@ -21,6 +21,11 @@ Netlogix:
         # Partial File to render in Asset Edit View
         # Path must be Package/Resources/Private/Partials/AssetMetadata/<editPartialName>.html
         editPartialName: 'MyMetadata'
+        # Neos AssetSource identifiers to which this Metadata configuration should apply
+        # If this is unset, the Metadata will be applied to all AssetSources
+        assetSources: ['neos', 'my-special-asset-source']
+        # Optional position for ordering in the Edit View of an Asset
+        position: 'start'
 ```
 3. Create the edit partial:
 ```html

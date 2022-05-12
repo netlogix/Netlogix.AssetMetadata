@@ -9,6 +9,7 @@ use Neos\Flow\Mvc\ActionRequest;
 use Neos\FluidAdaptor\View\TemplateView;
 use Neos\Media\Browser\Controller\AssetController;
 use Neos\Utility\ObjectAccess;
+use Netlogix\AssetMetadata\Domain\Service\AssetMetadataService;
 
 /**
  * @Flow\Aspect
@@ -17,10 +18,10 @@ class MediaBrowserAspect
 {
 
     /**
-     * @Flow\InjectConfiguration(path="metadata")
-     * @var array<string, array<string, string>>
+     * @var AssetMetadataService
+     * @Flow\Inject
      */
-    protected $metadataSettings = [];
+    protected $assetMetadataService;
 
     /**
      * @Flow\After("within(Neos\Media\Browser\Controller\AssetController) && method(.*->editAction())")
@@ -40,15 +41,25 @@ class MediaBrowserAspect
         $view = ObjectAccess::getProperty($controller, 'view', true);
         assert($view instanceof TemplateView);
 
+        $assetSourceIdentifier = $joinPoint->getMethodArgument('assetSourceIdentifier');
+        $metadataPartialRootPaths = $this->getPartialRootPathsForAssetSource($assetSourceIdentifier);
         $partialRootPaths = $view->getOption('partialRootPaths');
-        $metadataPartialRootPaths = array_map(static function(array $configuration) {
-            return $configuration['editPartialRootPath'] ?? false;
-        }, $this->metadataSettings);
 
         $view->setOption('partialRootPaths', array_merge(
             $partialRootPaths,
-            array_values(array_filter($metadataPartialRootPaths))
+            $metadataPartialRootPaths
         ));
+    }
+
+    private function getPartialRootPathsForAssetSource(string $assetSourceIdentifier): array
+    {
+        $metadataSettings = $this->assetMetadataService->getMetadataSettingsWithPartialForAssetSourceIdentifier(
+            $assetSourceIdentifier
+        );
+
+        return array_map(static function(array $configuration) {
+            return $configuration['editPartialRootPath'];
+        }, $metadataSettings);
     }
 
 }
