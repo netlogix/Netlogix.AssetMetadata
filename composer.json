@@ -3,9 +3,9 @@
     "description": "Attach metadata objects to Neos Assets",
     "type": "neos-package",
     "require": {
-        "neos/neos": "^5.3",
-        "neos/media": "^5.3",
-        "neos/utility-arrays": "^6.3"
+        "neos/neos": "^5.3 || ^7.3",
+        "neos/media": "^5.3 || ^7.3",
+        "neos/utility-arrays": "^6.3 || ^7.3"
     },
     "autoload": {
         "psr-4": {
