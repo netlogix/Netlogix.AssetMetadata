@@ -3,7 +3,6 @@ namespace Neos\Flow\Persistence\Doctrine\Migrations;
 
 use Doctrine\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Migrations\AbortMigrationException;
 
 /**
  * Update asset foreign key
@@ -22,7 +21,6 @@ class Version20210802105216 extends AbstractMigration
     /**
      * @param Schema $schema
      * @return void
-     * @throws AbortMigrationException
      */
     public function up(Schema $schema): void
     {
@@ -37,7 +35,6 @@ class Version20210802105216 extends AbstractMigration
     /**
      * @param Schema $schema
      * @return void
-     * @throws AbortMigrationException
      */
     public function down(Schema $schema): void
     {
