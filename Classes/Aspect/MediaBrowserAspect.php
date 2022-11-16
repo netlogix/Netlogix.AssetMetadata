@@ -24,7 +24,7 @@ class MediaBrowserAspect
     protected $assetMetadataService;
 
     /**
-     * @Flow\After("within(Neos\Media\Browser\Controller\AssetController) && method(.*->editAction())")
+     * @Flow\After("class(Neos\Media\Browser\Controller\AssetController) && method(.*->editAction())")
      *
      * @param JoinPointInterface $joinPoint
      */
