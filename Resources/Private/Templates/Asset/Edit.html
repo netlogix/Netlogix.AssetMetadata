@@ -50,7 +50,7 @@
                                         </f:else>
                                     </f:if>
                                     <!-- Netlogix.AssetMetadata -->
-                                    <f:render partial="Metadata" arguments="{assetProxy: assetProxy}" />
+                                    <f:render partial="Metadata" arguments="{assetProxy: assetProxy, asset: assetProxy.asset}" />
                                     <!-- /Netlogix.AssetMetadata -->
                                     <f:if condition="{tags}">
                                         <label>{neos:backend.translate(id: 'tags', package: 'Neos.Media.Browser')}</label>
